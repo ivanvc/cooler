@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["ivan@mohound.com"]
   gem.description   = %q{Mini ORM, agnostic to key value store databases}
   gem.summary       = %q{Mini ORM, agnostic to key value store databases}
-  gem.homepage      = "http://github.com/mohound/coolio"
+  gem.homepage      = "http://github.com/mohound/cooler"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

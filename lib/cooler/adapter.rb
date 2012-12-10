@@ -12,15 +12,17 @@ module Cooler
     # Sets the block that handles getting a key.
     #
     # block - The block that receives as argument the String with the
-    #         queried key.
+    #         queried key. It should return a Hash.
     #
     # Examples
     #
-    #   Cooler::Adapter.get = ->(key) { redis.get(key) }
+    #   Cooler::Adapter.get = ->(key) { JSON.parse(redis.get(key)) }
     #   Cooler::Adapter.get = Proc.new do |key|
-    #     couchbase[key]
-    #   rescue Couchbase::NotFound
-    #     nil
+    #     begin
+    #       couchbase[key]
+    #     rescue Couchbase::NotFound
+    #       puts 'uh oh'
+    #     end
     #   end
     #
     # Returns nothing.

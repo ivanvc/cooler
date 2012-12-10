@@ -26,7 +26,7 @@ describe Cooler::Model do
     end
   end
 
-  describe 'key' do
+  describe '#key' do
     it 'should set its key to a new format' do
       TestModelNewKey.key { |i| "foo_bar_#{i.foo}" }
       t = TestModelNewKey.new(foo: 'baaar')
@@ -34,7 +34,7 @@ describe Cooler::Model do
     end
   end
 
-  describe '_key' do
+  describe '._key' do
     it 'should be the passed key' do
       instance = TestModel.new('keykey')
       instance._key.should == 'keykey'
@@ -58,7 +58,7 @@ describe Cooler::Model do
     end
   end
 
-  describe 'get' do
+  describe '#get' do
     it "should return the instance if Adapter's get block returns something" do
       mock(Cooler::Adapter).get do
         ->(key) { key.should == 'test_bacon' && { foo: 'bar' } }
@@ -89,7 +89,7 @@ describe Cooler::Model do
     end
   end
 
-  describe 'get!' do
+  describe '#get!' do
     it 'should return the instance if found by Adapter' do
       mock(Cooler::Adapter).get do
         ->(k) { k.should == 'test_bacon' && { foo: 'bar' } }
@@ -106,7 +106,7 @@ describe Cooler::Model do
     end
   end
 
-  describe 'attributes=' do
+  describe '.attributes=' do
     before(:each) do
       @instance = TestModelUsingAttrAccessors.new
     end
@@ -133,7 +133,7 @@ describe Cooler::Model do
     end
   end
 
-  describe 'serializable_hash' do
+  describe '.serializable_hash' do
     it 'should only include class properties' do
       instance = TestModelUsingAttrAccessors.new(foo: 'bar', bacon: 'CHUNKY')
       instance.serializable_hash.keys.should_not include(:bacon)
@@ -150,7 +150,7 @@ describe Cooler::Model do
     end
   end
 
-  describe 'default' do
+  describe '#default' do
     it 'should raise an exception if no such attribute' do
       expect { TestModelWithDefaultValues.default :chunky }.
         to raise_error
@@ -190,7 +190,14 @@ describe Cooler::Model do
     end
   end
 
-  describe 'save' do
+  describe '.save!' do
+    it 'should raise an exception if not saved' do
+      mock(instance = TestModelForSave.new).save { false }
+      expect { instance.save! }.to raise_error(Cooler::InvalidRecord)
+    end
+  end
+
+  describe '.save' do
     it "should call Adapter's set to save its attributes and fail" do
       instance = TestModelForSave.new(foo: 'bar', bar: 'BAR')
       mock(Cooler::Adapter).set do
@@ -216,7 +223,7 @@ describe Cooler::Model do
     end
   end
 
-  describe 'create' do
+  describe '.create' do
     it 'should call Adapter to save its attributes' do
       mock(Cooler::Adapter).set do
         ->(key, value) do

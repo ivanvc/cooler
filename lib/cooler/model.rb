@@ -173,6 +173,15 @@ module Cooler
       !Cooler::Adapter.get.(_key).nil?
     end
 
+    # Saves persisted attributes to the database. Raises an exception if
+    # not able to save it.
+    #
+    # Returns nothing.
+    # Raises Cooler::InvalidRecord if not able to save it.
+    def save!
+      raise Cooler::InvalidRecord unless save
+    end
+
     private
     def set_default_values
       self.class.default_values.each do |key, value|

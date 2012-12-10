@@ -1,0 +1,38 @@
+PATH
+  remote: .
+  specs:
+    cooler (0.0.1)
+      activesupport (~> 3.2.9)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ZenTest (4.8.3)
+    activesupport (3.2.9)
+      i18n (~> 0.6)
+      multi_json (~> 1.0)
+    autotest (4.4.6)
+      ZenTest (>= 4.4.1)
+    diff-lcs (1.1.3)
+    i18n (0.6.1)
+    multi_json (1.4.0)
+    rake (10.0.2)
+    rr (1.0.4)
+    rspec (2.12.0)
+      rspec-core (~> 2.12.0)
+      rspec-expectations (~> 2.12.0)
+      rspec-mocks (~> 2.12.0)
+    rspec-core (2.12.1)
+    rspec-expectations (2.12.0)
+      diff-lcs (~> 1.1.3)
+    rspec-mocks (2.12.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  autotest (~> 4.4.6)
+  cooler!
+  rake
+  rr (~> 1.0.4)
+  rspec (~> 2.12.0)

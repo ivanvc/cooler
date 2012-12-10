@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     cooler (0.0.1)
-      activesupport (~> 3.2.9)
+      activesupport (~> 3.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -31,8 +31,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  autotest (~> 4.4.6)
+  autotest (~> 4.4.0)
   cooler!
   rake
-  rr (~> 1.0.4)
+  rr (~> 1.0.0)
   rspec (~> 2.12.0)

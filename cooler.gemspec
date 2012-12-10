@@ -17,9 +17,9 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
+  gem.add_dependency('activesupport', '>= 3.0.0')
 
-  gem.add_dependency('activesupport', '~> 3.2.0')
   gem.add_development_dependency('rspec', '~> 2.12.0')
-  gem.add_development_dependency('rr', '~> 1.0.0')
-  gem.add_development_dependency('autotest', '~> 4.4.0')
+  gem.add_development_dependency('rr', '~> 1.0.4')
+  gem.add_development_dependency('autotest', '~> 4.4.6')
 end

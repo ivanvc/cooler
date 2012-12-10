@@ -62,11 +62,11 @@ module Cooler
       #   default :app_key, lambda { |install| install.app.key }
       #
       # Returns nothing.
-      # Raises an exception if attribute does not exist.
+      # Raises NameError if attribute does not exist.
       def default(attr, value, &block)
         unless instance_methods.include?("#{attr}=".to_sym) &&
           instance_methods.include?(attr.to_sym)
-          raise "Unknown attribute #{attr}"
+          raise NameError, "Unknown attribute #{attr}"
         end
         @default_values[attr.to_sym] = value || block
       end
@@ -91,9 +91,10 @@ module Cooler
       #   # => Gets object with key: 'install_123'
       #
       # Return a Model instance or nothing if not found.
+      # Raises NameError, if searching by key and key not defined.
       def get(key)
         if Hash === key
-          raise 'Key not defined' unless @key_block
+          raise NameError, 'Key not defined' unless @key_block
           key = @key_block.(OpenStruct.new(key))
         end
         result = Cooler::Adapter.get.(key) and new(key, result)

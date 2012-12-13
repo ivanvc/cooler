@@ -106,11 +106,11 @@ module Cooler
       # key - The String that contains the key to query the object.
       #
       # Return a Model instance.
-      # Raises Cooler::NotFound if not found. Compatible with
+      # Raises Cooler::KeyNotFound if not found. Compatible with
       # Sinatra::NotFound;
       # http://www.sinatrarb.com/intro.html#Not%20Found
       def get!(key)
-        get(key) || raise(Cooler::NotFound)
+        get(key) || raise(Cooler::KeyNotFound)
       end
 
       # Initializes a new instance, and saves it at the same time.
@@ -177,9 +177,9 @@ module Cooler
     # not able to save it.
     #
     # Returns nothing.
-    # Raises Cooler::InvalidRecord if not able to save it.
+    # Raises Cooler::InvalidObject if not able to save it.
     def save!
-      raise Cooler::InvalidRecord unless save
+      raise Cooler::InvalidObject unless save
     end
 
     private

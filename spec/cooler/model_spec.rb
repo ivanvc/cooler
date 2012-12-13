@@ -102,7 +102,8 @@ describe Cooler::Model do
 
     it 'should raise an exception if no results' do
       mock(Cooler::Adapter).get { ->(k) { nil } }
-      expect { TestModel.get!('test_bacon') }.to raise_error(Cooler::NotFound)
+      expect { TestModel.get!('test_bacon') }.
+        to raise_error(Cooler::ObjectNotFound)
     end
   end
 
@@ -193,7 +194,7 @@ describe Cooler::Model do
   describe '.save!' do
     it 'should raise an exception if not saved' do
       mock(instance = TestModelForSave.new).save { false }
-      expect { instance.save! }.to raise_error(Cooler::InvalidRecord)
+      expect { instance.save! }.to raise_error(Cooler::InvalidObject)
     end
   end
 

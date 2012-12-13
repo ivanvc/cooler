@@ -1,11 +1,11 @@
 module Cooler
-  class NotFound < NameError
+  class KeyNotFound < NameError
     def http_status
       404
     end
   end
 
-  class InvalidRecord < StandardError
+  class InvalidObject < StandardError
     def http_status
       406
     end

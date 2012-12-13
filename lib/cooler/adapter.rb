@@ -7,6 +7,9 @@ module Cooler
 
       # Gets the set block.
       attr_reader :set
+
+      # Gets the delete block.
+      attr_reader :delete
     end
 
     # Sets the block that handles getting a key.
@@ -47,6 +50,21 @@ module Cooler
     def self.set=(block)
       raise 'Argument must be a block' unless Proc === block
       @set = block
+    end
+
+    # Sets the block that handles deleting a key.
+    #
+    # block - The block that receives as argument the String with the key to
+    #         delete.
+    #
+    # Examples
+    #
+    #   Cooler::Adapter.delete = ->(key) { redis.del(key) }
+    #
+    # Returns nothing.
+    def self.delete=(block)
+      raise 'Argument must be a block' unless Proc === block
+      @delete = block
     end
   end
 end

@@ -41,7 +41,7 @@ Defining a model is as easy as 1, 2, 3.
 ```ruby
 # A model should inherit from Struct, attributes defined there are PERSISTED
 # in the database.
-class User < Struct.new(:login, :age, :encrypted_password)
+class User < Struct.new(:login, :age, :encrypted_password, :created_at)
   # You must include Cooler::Model
   include Cooler::Model
 
@@ -51,6 +51,9 @@ class User < Struct.new(:login, :age, :encrypted_password)
 
   # You can set defaults for any of the attributes.
   default :age, 18
+  default :encrypted_password,
+    ->(user) { Digest::MD5.hexdigest(user.password) }
+  default :created_at, -> { Time.now.utc }
 
   # To define the key for a Model, you need to pass a block, and return an
   # String that will be the key to store the object.

@@ -162,7 +162,9 @@ module Cooler
     #
     # Returns the serialized Hash.
     def serializable_hash
-      Hash[*each_pair.map { |k, v| [k, v] }.flatten]
+      hash = {}
+      each_pair { |key, value| hash[key] = value }
+      hash
     end
 
     # Saves persisted attributes to the database.

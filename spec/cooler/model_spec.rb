@@ -141,6 +141,12 @@ describe Cooler::Model do
       instance.serializable_hash.keys.should include(:foo)
       instance.serializable_hash[:foo].should == 'bar'
     end
+
+    it 'should allow an Array as a value' do
+      instance = TestModelUsingAttrAccessors.new(foo: [1, 2, 3, 4])
+      expect { instance.serializable_hash }.to_not raise_error
+      instance.serializable_hash[:foo].should == [1, 2, 3, 4]
+    end
   end
 
   context 'using attribute accessors' do

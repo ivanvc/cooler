@@ -103,7 +103,7 @@ describe Cooler::Model do
     it 'should raise an exception if no results' do
       mock(Cooler::Adapter).get { ->(k) { nil } }
       expect { TestModel.get!('test_bacon') }.
-        to raise_error(Cooler::ObjectNotFound)
+        to raise_error(Cooler::KeyNotFound)
     end
   end
 
